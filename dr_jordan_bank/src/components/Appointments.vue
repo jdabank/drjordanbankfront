@@ -37,10 +37,6 @@ export default {
 </template>
 
 <style scoped>
-* {
-    text-align: center;
-}
-
 .container {
     display: flex;
 }
