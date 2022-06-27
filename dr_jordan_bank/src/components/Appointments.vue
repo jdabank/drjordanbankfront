@@ -2,7 +2,7 @@
 </script>
 
 <template>
-foopers
+    <p>Show Appointments Here</p>
 </template>
 
 <style scoped>
