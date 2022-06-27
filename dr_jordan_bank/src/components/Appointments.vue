@@ -27,19 +27,26 @@ export default {
 <template>
 <h1>Appointments</h1>
 <h3>Upcoming</h3>
-{{appointments.map((appointment) => {
-    return (
-        <>
-        shit
-        </>
-    )
-})}}
+<div class = 'container'>
+<div class = 'appointmentCard' v-for='appointment in appointments'>
+<p>{{appointment.physician}}</p>
+<p>{{appointment.reason}}</p>
+</div>
+</div>
 <h3>Previous</h3>
-{{appointments}}
 </template>
 
 <style scoped>
 * {
     text-align: center;
+}
+
+.container {
+    display: flex;
+}
+
+.appointmentCard {
+    display: block;
+    margin: 40px;
 }
 </style>
