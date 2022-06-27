@@ -2,6 +2,7 @@
 </script>
 
 <template>
+foopers
 </template>
 
 <style scoped>
