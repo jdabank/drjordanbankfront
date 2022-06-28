@@ -1,7 +1,7 @@
 <script>
-import {onMounted, ref} from 'vue'
-
+import {onMounted, ref, reactive} from 'vue'
 import axios from "axios"
+
 export default {
   name: "Appointments",
   data() {
@@ -13,17 +13,17 @@ export default {
 async getAppointments() {
       try {
         const appointments = await axios.get(
-          "https://drjordanbankinfo.herokuapp.com/api/appointments"
+          'https://drjordanbankinfo.herokuapp.com/api/appointments'
         )
         this.appointments = appointments.data
     } catch (err) {
         console.log(err)
       }
     },
-    async makeAppointment() {
+async makeAppointment() {
       try {
-        const app = await axios.post(
-          "https://drjordanbankinfo.herokuapp.com/api/appointments",
+        const newApp = await axios.post(
+          'https://drjordanbankinfo.herokuapp.com/api/appointments',
           {
             physician: this.physician,
             name : this.name,
@@ -31,12 +31,19 @@ async getAppointments() {
             reason: this.reason,
             details: this.details
           }
-        )
-    } catch(error) {
-        console.log(error);
+      )
+    } catch(err) {
+        console.log(err);
       }
     },
-  },
+async cancelAppointment(id) {
+    try {
+        await axios.delete('https://drjordanbankinfo.herokuapp.com/api/appointments/' + id)
+    } catch(err){
+        console.log(err)
+    }
+}
+},
 }
 
 </script>
@@ -46,13 +53,15 @@ async getAppointments() {
 <h3>Upcoming</h3>
 <div class = 'container'>
 <div class = 'appointmentCard' v-for='appointment in appointments'>
-<p>{{appointment.physician}}</p>
-<p>{{appointment.reason}}</p>
+<h2 class='phy'>{{appointment.physician}}</h2>
+<p class='phy'>{{appointment.reason}}</p>
+<button @click='cancelAppointment(appointment.id)'>Cancel Appointment</button>
 </div>
 </div>
 <h3>Previous</h3>
-<button @click='getAppointments'>Get</button>
-<form v-on:submit='makeAppointment'>
+<button @click='getAppointments'>Get</button><br/>
+<button @click='newToggle'>Make an Appointment</button>
+<form v-on:submit.prevent='preventDefault'>
     <label for='physicians'>Doctor: </label>
     <select id='physicians' v-model='physician'>
         <option>Jordan Bank</option>
@@ -80,11 +89,21 @@ async getAppointments() {
 
 <style scoped>
 .container {
-    display: flex;
+    display: inline-flex;
+    flex-wrap: wrap;
 }
 
 .appointmentCard {
     display: block;
-    margin: 40px;
+    margin: 25px;
+    background-color: white;
+    padding: 20px;
+    min-width: 150px;
+    border-radius: 20px;
+    filter: drop-shadow(0px 5px 5px darkgreen)
+}
+
+.phy {
+    background-color: white;
 }
 </style>
