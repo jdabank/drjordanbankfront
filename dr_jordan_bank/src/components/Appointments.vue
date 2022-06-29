@@ -41,7 +41,7 @@ async makeAppointment() {
             reason: this.reason,
             details: this.details
           }
-      ).then(axios.get('https://drjordanbankinfo.herokuapp.com/api/appointments').then(response => (this.appointments = response.data)))
+      ).then(await axios.get('https://drjordanbankinfo.herokuapp.com/api/appointments').then(response => (this.appointments = response.data)))
     } catch(err) {
         console.log(err);
       }
@@ -49,6 +49,7 @@ async makeAppointment() {
 async cancelAppointment(id) {
     try {
         await axios.delete('https://drjordanbankinfo.herokuapp.com/api/appointments/' + id)
+        await axios.get('https://drjordanbankinfo.herokuapp.com/api/appointments').then(response => (this.appointments = response.data))
     } catch(err){
         console.log(err)
     }
@@ -62,7 +63,7 @@ async updateAppointment(id) {
         reason: this.appointment.reason,
         details: this.appointment.details,
         id: this.appointment.id
-    })
+    }).then(axios.get('https://drjordanbankinfo.herokuapp.com/api/appointments').then(response => (this.appointments = response.data)))
 } catch(error) {
     console.log(error)
 }
