@@ -44,10 +44,12 @@ const appToggle = () => {
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 * {
-    background-color: lightgreen;
+    background-color: white;
     color: darkgreen;
     text-align: center;
+    font-family: 'Raleway'
 }
 
 ul {
