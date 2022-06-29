@@ -12,7 +12,8 @@ export default {
       name : '',
       age: '',
       reason: '',
-      details: ''
+      details: '',
+      id: ''
     }
   },
   mounted() {
@@ -40,7 +41,7 @@ async makeAppointment() {
             reason: this.reason,
             details: this.details
           }
-      )
+      ).then(axios.get('https://drjordanbankinfo.herokuapp.com/api/appointments').then(response => (this.appointments = response.data)))
     } catch(err) {
         console.log(err);
       }
@@ -52,27 +53,28 @@ async cancelAppointment(id) {
         console.log(err)
     }
 },
-async updateAppointment(){
+async updateAppointment(id) {
     try {
-         const appointment = await axios.put('https://drjordanbankinfo.herokuapp.com/api/appointments/' + this.appointment.id, {
-            physician: this.appointment.physician,
-            reason: this.appointment.reason,
-            age: this.appointment.age,
-            reason: this.appointment.reason,
-            details: this.appointment.details
-        })
-        alert('Fix me')
-    } catch (error){
-        console.log(error)
-    }
+    const appointment = await axios.put('https://drjordanbankinfo.herokuapp.com/api/appointments/' + id, {
+        physician: this.appointment.physician,
+        name: this.appointment.name,
+        age: this.appointment.age,
+        reason: this.appointment.reason,
+        details: this.appointment.details,
+        id: this.appointment.id
+    })
+} catch(error) {
+    console.log(error)
+}
 },
-async editAppointment(appointment) {
+async editAppointment (appointment) {
     this.appointment.physician = appointment.physician
     this.appointment.name = appointment.name
     this.appointment.age = appointment.age
     this.appointment.reason = appointment.reason
     this.appointment.details = appointment.details
-},
+    this.appointment.id = appointment.id
+}
 },
 }
 
@@ -92,7 +94,6 @@ async editAppointment(appointment) {
 <details class='phy'>
 <summary class='phy'>Edit Appointment</summary>
   <h3 class='phy'>Change Appointment</h3>
-  <form v-on:submit.prevent='preventDefault'>
   <select v-model='appointment.physician'>
       <option>Jordan Bank</option>
       <option>Meiling Li</option>
@@ -109,12 +110,11 @@ async editAppointment(appointment) {
       <option>Necromancy</option>
       <option>Allergies</option>
       <option>Jerusalem Syndrome</option>
-      <option>Ate Too Much</option>
+      <option>Ate too much</option>
   </select><br/>
   <input type='text' v-model='appointment.details'><br/>
-  <input type='submit' value='Confirm' @click='updateAppointment(appointment.id)'>
-  <input type='submit' value='Save' @click='editAppointment(appointment)'>
-  </form>
+  <button @click='editAppointment(appointment)'>Update</button>
+  <button @click='updateAppointment(appointment.id)'>Save</button>
 </details>
 </div>
 <button @click='cancelAppointment(appointment.id)'>Cancel Appointment</button>
@@ -139,7 +139,7 @@ async editAppointment(appointment) {
         <option>Necromancy</option>
         <option>Allergies</option>
         <option>Jerusalem Syndrome</option>
-        <option>Ate Too Much</option>
+        <option>Ate too much</option>
     </select><br/>
     Details: <input type='text' v-model='details'><br/>
     <input type='submit' value='Make Appointment' @click='makeAppointment'>
