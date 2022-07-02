@@ -33,34 +33,31 @@ export default {
         console.log(err);
       }
     },
-async cancelAppointment(id) {
+async deleteInsurance(id) {
     try {
         await axios.delete('https://drjordanbankinfo.herokuapp.com/api/insurance/' + id)
     } catch(err){
         console.log(err)
     }
 },
-async updateAppointment(id) {
+async updateInsurance(id) {
     try {
-    const appointment = await axios.put('https://drjordanbankinfo.herokuapp.com/api/insurance/' + id, {
-        physician: this.appointment.physician,
-        name: this.appointment.name,
-        age: this.appointment.age,
-        reason: this.appointment.reason,
-        details: this.appointment.details,
-        id: this.appointment.id
+    const insurance = await axios.put('https://drjordanbankinfo.herokuapp.com/api/insurance/' + id, {
+        company: this.insurance.company,
+        accountHolder : this.insurance.accountHolder,
+        policyNumber: this.insurance.policyNumber,
+        idNumber: this.insurance.idNumber,
+        id: this.insurance.id
     })
 } catch(error) {
     console.log(error)
 }
 },
-async editAppointment (appointment) {
-    this.appointment.physician = appointment.physician
-    this.appointment.name = appointment.name
-    this.appointment.age = appointment.age
-    this.appointment.reason = appointment.reason
-    this.appointment.details = appointment.details
-    this.appointment.id = appointment.id
+async editInsurance(insurance) {
+    this.insurance.company = insurance.company
+    this.insurance.accountHolder = insurance.accountHolder,
+    this.insurance.policyNumber = insurance.policyNumber,
+    this.insurance.idNumber = insurance.idNumber
 }
 },
 }
@@ -75,6 +72,22 @@ async editAppointment (appointment) {
 <p>{{insurance.accountHolder}}</p>
 <h4>Policy: {{insurance.policyNumber}}</h4>
 <h4>ID: {{insurance.idNumber}}</h4>
+    <label for='company'>Company: </label>
+    <select id='company' v-model='insurance.company'>
+        <option>Jordancare</option>
+        <option>Sauron Health</option>
+        <option>Delay The Inevitable</option>
+        <option>Florida Guns And Medicine</option>
+        <option>Sithcare</option>
+        <option>Waffle House</option>
+        <option>For Rich People Only</option>
+    </select><br/>
+    Account Holder: <input type = 'text' v-model='insurance.accountHolder'><br/>
+    Policy Number: <input type = 'number' v-model='insurance.policyNumber'><br/>
+    ID Number: <input type='number' v-model='insurance.idNumber'><br/>
+    <button @click='editInsurance(insurance)'>Update</button>
+    <button @click='updateInsurance(insurance.id)'>Save</button><br/>
+<button @click='deleteInsurance(insurance.id)'>Remove</button>
 </div>
 </div>
 <form v-on:submit.prevent='preventDefault'>
