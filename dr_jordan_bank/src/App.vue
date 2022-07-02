@@ -3,27 +3,39 @@
     import Home from './components/Home.vue'
     import About from './components/About.vue'
     import Appointments from './components/Appointments.vue'
+    import Insurance from './components/Insurance.vue'
 
 const home = ref(true)
 const about = ref(false)
 const apps = ref(false)
+const ins = ref(false)
 
 const homeToggle = () => {
     home.value = true
     about.value = false
     apps.value = false
+    ins.value = false
 }
 
 const aboutToggle = () => {
     home.value = false
     about.value = true
     apps.value = false
+    ins.value = false
 }
 
 const appToggle = () => {
     home.value = false
     about.value = false
     apps.value = true
+    ins.value = false
+}
+
+const insuranceToggle = () => {
+    home.value = false
+    about.value = false
+    apps.value = false
+    ins.value = true
 }
 
 </script>
@@ -34,13 +46,14 @@ const appToggle = () => {
         <li @click='homeToggle'>Home</li>
         <li @click='aboutToggle'>About</li>
         <li @click='appToggle'>Appointments</li>
-        <li>Insurance</li>
+        <li @click='insuranceToggle'>Insurance</li>
         <li>Patient Portal</li>
         </ul>
     </nav>
     <div v-if='home'><Home/></div>
     <div v-if='about'><About/></div>
     <div v-if='apps'><Appointments/></div>
+    <div v-if='ins'><Insurance/></div>
 </template>
 
 <style>

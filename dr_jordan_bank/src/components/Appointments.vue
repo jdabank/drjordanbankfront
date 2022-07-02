@@ -20,17 +20,7 @@ export default {
       axios.get('https://drjordanbankinfo.herokuapp.com/api/appointments').then(response => (this.appointments = response.data))
   },
   methods: {
-// async getAppointments() {
-//       try {
-//         const appointments = await axios.get(
-//           'https://drjordanbankinfo.herokuapp.com/api/appointments'
-//         )
-//         this.appointments = appointments.data
-//     } catch (err) {
-//         console.log(err)
-//       }
-//     },
-async makeAppointment() {
+      async makeAppointment() {
       try {
         const newApp = await axios.post(
           'https://drjordanbankinfo.herokuapp.com/api/appointments',
