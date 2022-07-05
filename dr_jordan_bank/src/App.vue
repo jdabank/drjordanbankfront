@@ -5,6 +5,7 @@
     import Appointments from './components/Appointments.vue'
     import Insurance from './components/Insurance.vue'
     import PP from './components/PP.vue'
+    import LoginRegister from './components/LoginRegister.vue'
 
 const home = ref(true)
 const about = ref(false)
@@ -52,6 +53,7 @@ const ppToggle = () => {
     pp.value= true
 }
 
+
 </script>
 
 <template>
@@ -68,7 +70,7 @@ const ppToggle = () => {
     <div v-if='about'><About/></div>
     <div v-if='apps'><Appointments/></div>
     <div v-if='ins'><Insurance/></div>
-    <div v-if='pp'><PP/></div>
+    <div v-if='pp'><LoginRegister/></div>
 </template>
 
 <style>
