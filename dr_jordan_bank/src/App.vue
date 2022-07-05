@@ -1,81 +1,92 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+    import {ref, reactive} from 'vue'
+    import Home from './components/Home.vue'
+    import About from './components/About.vue'
+    import Appointments from './components/Appointments.vue'
+    import Insurance from './components/Insurance.vue'
+    import LoginRegister from './components/LoginRegister.vue'
+
+const home = ref(true)
+const about = ref(false)
+const apps = ref(false)
+const ins = ref(false)
+const pp = ref(false)
+
+const homeToggle = () => {
+    home.value = true
+    about.value = false
+    apps.value = false
+    ins.value = false
+    pp.value = false
+}
+
+const aboutToggle = () => {
+    home.value = false
+    about.value = true
+    apps.value = false
+    ins.value = false
+    pp.value = false
+}
+
+const appToggle = () => {
+    home.value = false
+    about.value = false
+    apps.value = true
+    ins.value = false
+    pp.value = false
+}
+
+const insuranceToggle = () => {
+    home.value = false
+    about.value = false
+    apps.value = false
+    ins.value = true
+    pp.value = false
+}
+
+const ppToggle = () => {
+    home.value = false
+    about.value = false
+    apps.value = false
+    ins.value = false
+    pp.value= true
+}
+
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You fucked up!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <nav>
+        <ul>
+        <li @click='homeToggle'>Home</li>
+        <li @click='aboutToggle'>About</li>
+        <li @click='appToggle'>Appointments</li>
+        <li @click='insuranceToggle'>Insurance</li>
+        </ul>
+    </nav>
+    <div v-if='home'><Home/></div>
+    <div v-if='about'><About/></div>
+    <div v-if='apps'><Appointments/></div>
+    <div v-if='ins'><Insurance/></div>
+    <button class='logout' @click='logout'>Logout</button>
 </template>
 
 <style>
-@import './assets/base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+* {
+    background-color: white;
+    color: darkgreen;
+    text-align: center;
+    font-family: 'Raleway'
 }
 
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
+ul {
     display: flex;
-    place-items: center;
-  }
+    justify-content: space-around;
+    list-style: none;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+li:hover {
+        color: red;
 }
 </style>

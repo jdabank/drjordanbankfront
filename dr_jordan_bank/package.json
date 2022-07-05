@@ -7,7 +7,10 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
-    "vue": "^3.2.37"
+    "axios": "^0.27.2",
+    "firebase": "^9.8.4",
+    "vue": "^3.2.37",
+    "vue-axios": "^3.4.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
