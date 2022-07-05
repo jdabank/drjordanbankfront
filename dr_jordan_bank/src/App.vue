@@ -4,7 +4,6 @@
     import About from './components/About.vue'
     import Appointments from './components/Appointments.vue'
     import Insurance from './components/Insurance.vue'
-    import PP from './components/PP.vue'
     import LoginRegister from './components/LoginRegister.vue'
 
 const home = ref(true)
@@ -63,14 +62,13 @@ const ppToggle = () => {
         <li @click='aboutToggle'>About</li>
         <li @click='appToggle'>Appointments</li>
         <li @click='insuranceToggle'>Insurance</li>
-        <li @click='ppToggle'>Patient Portal</li>
         </ul>
     </nav>
     <div v-if='home'><Home/></div>
     <div v-if='about'><About/></div>
     <div v-if='apps'><Appointments/></div>
     <div v-if='ins'><Insurance/></div>
-    <div v-if='pp'><LoginRegister/></div>
+    <button class='logout' @click='logout'>Logout</button>
 </template>
 
 <style>

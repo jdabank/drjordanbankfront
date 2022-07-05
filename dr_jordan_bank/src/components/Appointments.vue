@@ -71,7 +71,6 @@ async editAppointment (appointment) {
 </script>
 
 <template>
-<h1>Appointments</h1>
 <div class = 'container'>
 <div class = 'appointmentCard' v-for='appointment in appointments'>
 <h2 class='phy'>{{appointment.physician}}</h2>

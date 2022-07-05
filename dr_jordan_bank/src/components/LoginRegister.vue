@@ -4,10 +4,19 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
+const login = ref(true)
+const registration = ref(false)
+
+const registrationToggle = () => {
+    registration.value = true
+    login.value = false
+}
+
 export default {
 name: 'Users',
 data() {
   return {
+    users: [],
     email: '',
     password: '',
   };
@@ -51,9 +60,7 @@ methods: {
 </script>
 
 <template>
-<details>
-<summary>Login</summary>
-<div>
+<div v-if='login'>
   <form @submit.prevent="login">
     <h2>Login</h2>
     <input
@@ -68,13 +75,11 @@ methods: {
     /><br/>
     <button type="submit">
        Login
-    </button>
+    </button><br/>
   </form>
+  <button @click = 'registrationToggle'>Don't have an account? Register here.</button>
 </div>
-</details>
-<details>
-<summary>Register</summary>
-<div>
+<div v-if='registration'>
   <form @submit.prevent="register">
     <h2>Register</h2>
     <input
@@ -90,7 +95,6 @@ methods: {
     <button type="submit">Register</button>
   </form>
 </div>
-</details>
 <button @click='logout'>Logout</button>
 </template>
 
