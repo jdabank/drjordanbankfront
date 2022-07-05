@@ -4,17 +4,20 @@
     import About from './components/About.vue'
     import Appointments from './components/Appointments.vue'
     import Insurance from './components/Insurance.vue'
+    import PP from './components/PP.vue'
 
 const home = ref(true)
 const about = ref(false)
 const apps = ref(false)
 const ins = ref(false)
+const pp = ref(false)
 
 const homeToggle = () => {
     home.value = true
     about.value = false
     apps.value = false
     ins.value = false
+    pp.value = false
 }
 
 const aboutToggle = () => {
@@ -22,6 +25,7 @@ const aboutToggle = () => {
     about.value = true
     apps.value = false
     ins.value = false
+    pp.value = false
 }
 
 const appToggle = () => {
@@ -29,6 +33,7 @@ const appToggle = () => {
     about.value = false
     apps.value = true
     ins.value = false
+    pp.value = false
 }
 
 const insuranceToggle = () => {
@@ -36,6 +41,15 @@ const insuranceToggle = () => {
     about.value = false
     apps.value = false
     ins.value = true
+    pp.value = false
+}
+
+const ppToggle = () => {
+    home.value = false
+    about.value = false
+    apps.value = false
+    ins.value = false
+    pp.value= true
 }
 
 </script>
@@ -47,13 +61,14 @@ const insuranceToggle = () => {
         <li @click='aboutToggle'>About</li>
         <li @click='appToggle'>Appointments</li>
         <li @click='insuranceToggle'>Insurance</li>
-        <li>Patient Portal</li>
+        <li @click='ppToggle'>Patient Portal</li>
         </ul>
     </nav>
     <div v-if='home'><Home/></div>
     <div v-if='about'><About/></div>
     <div v-if='apps'><Appointments/></div>
     <div v-if='ins'><Insurance/></div>
+    <div v-if='pp'><PP/></div>
 </template>
 
 <style>
