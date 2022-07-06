@@ -1,13 +1,11 @@
 # Details     
 
-This will be the front end of the project, built in Vue. It will be a mockup of a doctor's website.
+This will be the front end of the project, built in Vue, using two models (appointments and insurnace) in a Django backend. It will be a mockup of a doctor's website with a patient portal.
 
-<<<<<<< HEAD
+# Vue
+
+This project is built in Vue 3, incorporating ref, reactive, and mounting. Page switching is super easy in view with mounting - all that stuff just has to be in script setup and not script.
+
 # Firebase
 
-Going to try and use Firebase for user authentication. Autho0 did not work well for me. Full CRUD in both models is done.
-=======
-#June 26
-
-Tried importing an API in some ways, I can't quite figure out my preferred way just yet. Not happy with anything so far.
->>>>>>> 2c57abc47f75785fa686d4a886d087492c94beea
+I have the app deployed to Firebase - which is SO much easier than Heruko. I also set up user authentication through Firebase, but it only works locally and not on the deploy, making it very difficult to fix the problem. The problem is not present on my machine.
